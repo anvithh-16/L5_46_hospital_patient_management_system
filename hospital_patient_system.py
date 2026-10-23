@@ -82,15 +82,22 @@ def _evaluate_bill_expression(expression, base_bill):
             return evaluate(node.body)
         if isinstance(node, ast.Name) and node.id == "base_bill":
             return base_bill
-        if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
+        if isinstance(node, ast.Constant) and isinstance(
+            node.value, (int, float)
+        ):
             return node.value
-        if isinstance(node, ast.BinOp) and type(node.op) in _ALLOWED_BINARY_OPERATORS:
+        if (
+            isinstance(node, ast.BinOp)
+            and type(node.op) in _ALLOWED_BINARY_OPERATORS
+        ):
             left = evaluate(node.left)
             right = evaluate(node.right)
             if isinstance(node.op, ast.Div) and right == 0:
                 raise ValueError("Division by zero in billing formula.")
             return _ALLOWED_BINARY_OPERATORS[type(node.op)](left, right)
-        if isinstance(node, ast.UnaryOp) and isinstance(node.op, (ast.UAdd, ast.USub)):
+        if isinstance(node, ast.UnaryOp) and isinstance(
+            node.op, (ast.UAdd, ast.USub)
+        ):
             value = evaluate(node.operand)
             return value if isinstance(node.op, ast.UAdd) else -value
         raise ValueError("Formula contains an unsupported operation.")
@@ -102,7 +109,8 @@ def _evaluate_bill_expression(expression, base_bill):
 
 
 def calculate_treatment_cost(p_id, formula_expr):
-    """Calculate a bill using a restricted formula and the patient's base bill."""
+    """Calculate a bill using a restricted formula and the patient's
+    base bill."""
     patient = patient_records.get(p_id)
     if patient is None:
         raise KeyError(f"Unknown patient ID: {p_id}")
@@ -144,7 +152,10 @@ def main():
     admit_patient("P104", "Alice Walker", "General")
     discharge_patient("P101")
     print("Is P103 admitted:", verify_admission_status("P103"))
-    print("Cost calculated:", calculate_treatment_cost("P103", "base_bill * 1.12"))
+    print(
+        "Cost calculated:",
+        calculate_treatment_cost("P103", "base_bill * 1.12"),
+    )
     print("Patient Hash:", generate_patient_hash("P103"))
     print("Ward Token:", generate_ward_token())
     exported_path = export_patient_ledger()

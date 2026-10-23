@@ -1,0 +1,5 @@
+[1mhospital_patient_system.py[m[36m:[m85[36m:[m80[36m:[m [1m[31mE501[m line too long (83 > 79 characters)
+[1mhospital_patient_system.py[m[36m:[m87[36m:[m80[36m:[m [1m[31mE501[m line too long (86 > 79 characters)
+[1mhospital_patient_system.py[m[36m:[m93[36m:[m80[36m:[m [1m[31mE501[m line too long (87 > 79 characters)
+[1mhospital_patient_system.py[m[36m:[m105[36m:[m80[36m:[m [1m[31mE501[m line too long (82 > 79 characters)
+[1mhospital_patient_system.py[m[36m:[m147[36m:[m80[36m:[m [1m[31mE501[m line too long (83 > 79 characters)
